@@ -1,0 +1,22 @@
+// Custom Input Field
+"use strict";!function(e,t,n){var i=e.querySelectorAll(".inputfile");Array.prototype.forEach.call(i,function(e){var t=e.nextElementSibling,n=t.innerHTML;e.addEventListener("change",function(e){var i="";(i=this.files&&this.files.length>1?(this.getAttribute("data-multiple-caption")||"").replace("{count}",this.files.length):e.target.value.split("\\").pop())?t.querySelector("span").innerHTML=i:t.innerHTML=n}),e.addEventListener("focus",function(){e.classList.add("has-focus")}),e.addEventListener("blur",function(){e.classList.remove("has-focus")})})}(document,window);
+
+// gaugemeter JavaScript
+!function(e){e.fn.gaugeMeter=function(t){var i=e.extend({id:"",percent:0,used:null,min:null,total:null,size:100,prepend:"",append:"",theme:"Green",color:"",back:"RGBa(0,0,0,.06)",width:3,style:"Full",stripe:"0",animationstep:1,animate_gauge_colors:!1,animate_text_colors:!1,label:"",label_color:"Black",text:"",text_size:.22,fill:"",showvalue:!1},t);return this.each(function(){function t(e){var t="#2C94E0";return e||(e=1e-14),"Green"===l.theme&&(t="#00a650"),t}e(this).attr("data-id",e(this).attr("id"));var a,n=["percent","used","min","total","size","prepend","append","theme","color","back","width","style","stripe","animationstep","animate_gauge_colors","animate_text_colors","label","label_color","text","text_size","fill","showvalue"],l={},r=0,s=e(this),o=!1;if(s.addClass("gaugeMeter"),function(t){e.each(n,function(a,n){void 0!==t.data(n)&&null!==t.data(n)?l[n]=t.data(n):l[n]=e(i).attr(n),"fill"===n&&(o=l[n]),"size"!==n&&"width"!==n&&"animationstep"!==n&&"stripe"!==n||Number.isInteger(l[n])||(l[n]=parseInt(l[n])),"text_size"===n&&(l[n]=parseFloat(l[n]))})}(s),Number.isInteger(l.used)&&Number.isInteger(l.total)){var p=l.used,h=l.total;Number.isInteger(l.min)&&l.min<0&&(h-=l.min,p-=l.min),r=p/(h/100)}else r=Number.isInteger(l.percent)?l.percent:parseInt(i.percent);r<0&&(r=0),r>100&&(r=100),""!==l.text&&null!==l.text&&void 0!==l.text?(a=""!==l.append&&null!==l.append&&void 0!==l.append?l.text+"<u>"+l.append+"</u>":l.text,""!==l.prepend&&null!==l.prepend&&void 0!==l.prepend&&(a="<s>"+l.prepend+"</s>"+a)):(a=!0===i.showvalue||!0===l.showvalue?l.used:r.toString(),""!==l.prepend&&null!==l.prepend&&void 0!==l.prepend&&(a="<s>"+l.prepend+"</s>"+a),""!==l.append&&null!==l.append&&void 0!==l.append&&(a=a+"<u>"+l.append+"</u>")),l.fgcolor=t(r),""!==l.color&&null!==l.color&&void 0!==l.color&&(l.fgcolor=l.color),!0===l.animate_gauge_colors&&(l.fgcolor=t(r)),function(t){var i="";!0===l.animate_text_colors&&(i=l.fgcolor);var n=t.children("span");0===n.length?((l.text_size<=0||Number.isNaN(l.text_size))&&(l.text_size=.22),l.text_size>.5&&(l.text_size=.5),e("<span></span>").appendTo(t).html(a).css({"line-height":l.size+"px","font-size":l.text_size*l.size+"px",color:i})):n.html(a).css({color:i})}(s),""!==l.style&&null!==l.style&&void 0!==l.style&&function(t,i){0===t.children("b").length&&e("<b></b>").appendTo(t).html(l.label).css({"line-height":l.size+5*i+"px",color:l.label_color})}(s,l.size/13),e(this).width(l.size+"px");var d=e("<canvas></canvas>").attr({width:l.size,height:l.size}).get(0),c=d.getContext("2d"),u=d.width/2,m=d.height/2,g=(l.percent,Math.PI,d.width/2.5),x=2.3*Math.PI,f=0,_=0===l.animationstep?r:0,v=Math.max(l.animationstep,0),z=2*Math.PI,b=Math.PI/2,I=l.style,w=e(this).children("canvas");0!==w.length?w.replaceWith(d):e(d).appendTo(e(this)),"Semi"===I&&(x=2*Math.PI,f=3.13,z=1*Math.PI,b=Math.PI/.996),"Arch"===I&&(x=2.195*Math.PI,f=1,f=655.99999,z=1.4*Math.PI,b=Math.PI/.8335),function e(t){_<0&&(_=0),_>100&&(_=100);var i=l.width<1||isNaN(l.width)?l.size/20:l.width;c.clearRect(0,0,d.width,d.height),c.beginPath(),c.arc(u,m,g,f,x,!1),o&&(c.fillStyle=l.fill,c.fill()),c.lineWidth=i,c.strokeStyle=l.back,l.stripe>parseInt(0)?c.setLineDash([l.stripe],1):c.lineCap="round",c.stroke(),c.beginPath(),c.arc(u,m,g,-b,z*t-b,!1),c.lineWidth=i,c.strokeStyle=l.fgcolor,c.stroke(),r>_&&(_+=v,requestAnimationFrame(function(){e(Math.min(_,r)/100)},s))}(_/100)})}}(jQuery);
+
+// JavaScript Document
+$(document).ready(function(){
+	$(".navbar-toggler").on("click", function () {
+		$(this).toggleClass("active");
+		$(".left-side-menu").toggleClass("active");
+	});
+	$(".slide-arrow").on("click", function () {
+		$(this).toggleClass("active");
+		$(this).parent().toggleClass("hide");
+		$('.table-content').toggleClass("full-width");
+	});
+	$('.dropdown-menu.keep-open').on('click', function (e) {
+		e.stopPropagation();
+	});
+	$('[data-toggle="tooltip"]').tooltip();
+});

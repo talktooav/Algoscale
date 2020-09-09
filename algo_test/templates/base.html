@@ -1,0 +1,36 @@
+{% include 'base/header.html' %}
+
+<body>
+<div class="wrapper">
+  
+  <div class="content-page">
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include 'base/footer.html' %}
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="mapped" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+{% include 'base/js.html' %}
+
+{% block additional_js %}
+
+{% endblock additional_js %}
+
+{% block javascript %}
+
+{% endblock %}
+
+</body>
+</html>
+  

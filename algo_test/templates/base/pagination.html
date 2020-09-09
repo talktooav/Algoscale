@@ -1,0 +1,59 @@
+{% block pagination %}
+{% if context.object_list.has_other_pages %}
+<div class="pagination-sec">
+    <div class="row align-items-center">
+        <div class="col-xl-9">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if context.object_list.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" onclick="searchFilter({{ context.object_list.previous_page_number }})" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0)" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for i in context.object_list.paginator.page_range %}
+                        <li class="page-item {% if context.object_list.number == i %} active{% endif %}">
+                            <a class="page-link" {% if context.object_list.number != i %} onclick="searchFilter({{ i }})" {% endif %}>{{ i }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    {% if context.object_list.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" onclick="searchFilter({{ context.object_list.next_page_number }})" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0)" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% comment %}
+        <div class="col-xl-3">
+            <div class="select-per-page">
+                <select class="form-control">
+                    <option>20 Device PP</option>
+                    <option>40 Device PP</option>
+                    <option>60 Device PP</option>
+                    <option>80 Device PP</option>
+                    <option>100 Device PP</option>
+                </select>
+            </div>
+        </div>
+        {% endcomment %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

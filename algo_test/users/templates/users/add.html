@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="navbar-custom navbar-light">   
+    <div class="app-search">
+      <div class="col-12 form-group">
+          <p>Add User</p>
+      </div>
+    </div>
+</div>
+<div class="containerfluid">
+    <div class="devices-sec">
+      <div class="devices-content">
+        <div class="row">
+          <div class="col-xl-8">
+            <form id="usersubmitForm" method="POST" action="{% url 'users:add-user' %}">
+            <div id="msg-group"></div>   
+               {% csrf_token %}
+               {% for field in form %}              
+                   <div class="row">
+                   <div class="col-md-12 form-group" id="{{ field.html_name }}-group">
+                     {{ field.errors }}
+                     {{ field.label_tag }} {{ field }}
+                     
+                   </div>
+                   </div>
+               {% endfor %}
+               
+               <div class="row col-12 form-group">
+               <input type="submit" name="users_submit" id="users_submit" class="btn btn-lg btn-primary" value="Submit"/>
+                </div> 
+            </form>
+          </div> 
+        </div> 
+      </div> 
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_js %}
+<script src='{% static "scripts/users/app.js" %}'></script>
+{% endblock additional_js %}

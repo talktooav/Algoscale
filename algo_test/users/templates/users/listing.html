@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="navbar-custom navbar-light">   
+    <div style="float:right;">
+        <ul class="nav nav-top-nav">
+            <li class="nav-item dropdown show">    
+            <a href="#" class="nav-link nav-link-user" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-user"></i> <span class="link-user-label">MY ACCOUNT</span></a>
+            <div class="dropdown-menu show" style="top:32px; left:-120px;">
+              <a class="dropdown-item" href="javascript:void(0);">Hi {{request.session.username}} </a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+        
+      </div>
+  <div class="app-search">     
+    <form class="d-flex align-items-center" id="SearchForm" action="{% url 'users:user-ajax-view' %}" autocomplete="off"> 
+      {% csrf_token %}
+        <p>All Users</p>
+        <div class="custom-navbar">
+          <ul class="list-unstyled device-nav clearfix">
+            <li><button type="button" name="close" class="btn cross-icon"><i class="ico cross-ico"></i><span class="totals"></span></button></li>
+            <li><button type="button" name="rest" class="btn refresh-icon"><i class="ico refresh-ico"></i></button></li>
+          </ul>
+          
+        </div>
+    </form> 
+  </div>
+</div>
+  
+<div class="container-fluid">
+
+    <div class="devices-sec">
+      <div class="devices-content">
+        <div class="d-flex align-items-start">
+          <div class="table-content full-width">
+            <div class="table-responsive">
+              <table class="table table-hover" id="list_view">
+                <thead>
+                  <tr>
+                    <th width="5%" scope="col">
+                      <div class="btn-checkbox">
+                          <input type="checkbox" id="checkall-toggle" name="checkall-toggle"> 
+                          <label for="checkall-toggle"></label>
+                      </div>
+                    </th>
+                    <th width="15%" scope="col">Name</th>
+                    <th width="15%" scope="col">Email Id</th>
+                    <th width="15%" scope="col">CreatedAt</th>        
+                    <th width="15%" scope="col">Action</th>               
+                  </tr>
+               </thead>
+
+                  <tbody>
+                   
+                  </tbody>                
+              </table>
+            </div>
+           <div id="pagination_view"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block additional_js %}
+<script type="text/javascript" src="{% static 'scripts/users/app-list.js' %}"></script>
+
+{% endblock additional_js %}

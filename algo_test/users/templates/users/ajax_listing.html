@@ -1,0 +1,17 @@
+{% if context.object_list %}
+{% for user in context.object_list %}
+<tr>
+  <th scope="row">
+    <div class="btn-checkbox">
+    <span class="btn-checkbox">
+       <input type="checkbox" id="{{forloop.counter}}" name="cid[]" class="list_item"  value="{{ user.id }}">
+       <label for="{{ forloop.counter }}"></label>
+    </div>
+  </th> 
+    <td>{{ user.name }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.createdAt }}</td>
+    <td><button data-toggle="tooltip" class="btn btn-default delBtn" data-url="{% url 'users:user-delete' %}" data-placement="top" ><i class="ico trash-icon"></i></button></td>
+</tr>
+{% endfor %}
+{% endif %}

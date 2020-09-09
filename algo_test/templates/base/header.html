@@ -1,0 +1,44 @@
+{% load static %}
+{% comment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+  <title>Kiosq</title>
+    {% include 'base/css.html' %}
+    {% block base_head %}{% endblock %}
+</head>
+<body>
+{#  top navbar  #}
+{% url 'logout' as logout_url %}
+
+<nav class="navbar navbar-light fixed-top bg-danger flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#" style="color: white">{% if brand_name %} {{brand_name }} {% else %} MDM {% endif %}</a>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      {% if request.user.is_authenticated %}<a class="nav-link" href="{{ logout_url }}" style="color: white">Sign out</a>{% endif %}
+    </li>
+  </ul>
+</nav>
+{% endcomment %}
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8" lang="en-US"><![endif]-->
+<!--[if !(IE 8)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<title>Kiosq</title>
+<link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/vnd.microsoft.icon"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% include 'base/css.html' %}
+{% block base_head %} {% endblock %}
+
+</head>
